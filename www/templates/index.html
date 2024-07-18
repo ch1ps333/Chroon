@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chroon</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+</head>
+<body>
+    <div id="page_container">
+        <div id="main_container" class="section">
+            <header>
+                <div class="icons" id="icon_profile">
+                    <span id="user_name">Valentin</span>
+                </div>
+    
+                <div id="settings_but">
+                    <div class="icons" id="icon_settings">
+                        <span id="user_settings">Settings</span>
+                    </div>
+                </div>
+            </header>
+            <main>
+                <div class="icons" id="icon_chroon_coin">
+                    <span id="user_balance">1 488 000</span>
+                </div>
+                
+                <div id="top_block">
+                    <div id="top_bar">
+                        <div id="top_progress"></div>
+                    </div>
+                    <span id="current_score">100</span>
+                    <span id="require_score">500</span><br>
+                    <span id="current_league">Hamlet</span>
+                </div>
+    
+                <div id="main_nav">
+                    <div id="airdrop_nav" class="main_nav_items">Airdrop</div>
+                </div>
+    
+                <div id="town">
+                    <div id="town_menu">Town</div>
+                    <img id="town_img" src="../static/png/towns/none.png" alt="Town">
+                </div>
+            </main>
+        </div>
+    
+        <div id="earn_container" class="section" style="display: none;">
+            <div id="earn_games">
+                <div id="earn_tap" class="earn_games" data-target="game_tap">
+                    <img class="earn_games_img" src="../static/png/towns/city.png">
+                    <span class="earn_games_title">Tap</span><br><br>
+                    <span class="earn_games_describe">This game oakdapod apdkaopdkapkd aosdkapda dakspdokapodkaposdk okad</span>
+                </div>
+            </div>
+            <div id="game_tap" class="games" style="display: none;">
+                <div class="icons" id="icon_chroon_coin">
+                    <span id="user_balance">1 488 000</span>
+                </div>
+
+                <div>
+                    <div class="icons" id="icon_boost">
+                        <span id="game_tap_boost">Boost</span>
+                    </div>
+    
+                    <div id="game_tap_coin">
+                        <div class="shadow"></div>
+                        <div id="back_coin"></div>
+                        <img class="coin" src="../static/png/icons/chroonCoin.png">
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div id="referals_container" class="section" style="display: none;">
+            referals
+        </div>
+    
+        <div id="tasks_container" class="section" style="display: none;">
+            tasks
+        </div>
+    
+        <div class="nav_panel">
+            <div class="nav_items" data-target="main_container">Main</div>
+            <div class="nav_items" data-target="earn_container">Earn</div>
+            <div class="nav_items" data-target="referals_container">Referals</div>
+            <div class="nav_items" data-target="tasks_container">Tasks</div>
+        </div>
+    </div>
+
+    <script src="../static/js/pageRoute.js"></script>
+    <script>
+        const coin = document.getElementById('game_tap_coin');
+        const coinElement = document.querySelector('.coin');
+    
+        coin.addEventListener('click', (event) => {
+            const rect = coin.getBoundingClientRect();
+            const coinCenterX = rect.left + rect.width / 2;
+            const coinCenterY = rect.top + rect.height / 2;
+    
+            const deltaX = event.clientX - coinCenterX;
+            const deltaY = event.clientY - coinCenterY;
+    
+            const tiltX = (deltaY / rect.height) * 60;
+            const tiltY = -(deltaX / rect.width) * 60;
+    
+            coinElement.style.setProperty('--tilt-x', `${tiltX}deg`);
+            coinElement.style.setProperty('--tilt-y', `${tiltY}deg`);
+    
+            // Удалите классы, чтобы перезапустить анимацию
+            coinElement.classList.remove('tilt');
+            
+            requestAnimationFrame(() => {
+                coinElement.classList.add('tilt');
+            });
+    
+            setTimeout(() => {
+                coinElement.classList.remove('tilt');
+            }, 300);
+        });
+    </script>
+</body>
+</html>

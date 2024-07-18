@@ -1,0 +1,321 @@
+body {
+    font-family: 'Open Sans', 'Helvetica Neue', sans-serif;
+    color: #D3D3D3;
+    margin: 0;
+    padding: 0;
+    background-color: #1e1f24;
+}
+
+header {
+    width: 100%;
+    background: linear-gradient(90deg, #00a5f7 0%, #0052f6 100%);
+    height: 10vh;
+    border-radius: 0 0 18px 18px;
+    box-shadow: 0 0 40px 1vh #00a5f7;
+}
+
+#main {
+    height: 83vh;
+}
+
+#user_name, #icon_profile {
+    font-size: 24px;
+    float: left;
+    margin: 3% 5%;
+}
+
+#user_settings, #icon_settings {
+    font-size: 24px;
+    float: right;
+    margin: 3% 5%;
+}
+
+#user_balance, #icon_chroon_coin {
+    margin: 5% 5%;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+#top_block {
+    position: relative;
+    margin: 10% 5%;
+    width: 90%;
+    height: 12vh;
+    border: 2px solid #9fd8d8;
+    border-radius: 12px;
+}
+
+#top_bar {
+    margin: 2% 3%;
+    width: 94%;
+    height: 1vh;
+    border: 1px solid gray;
+    border-radius: 24px;
+}
+
+#top_progress {
+    height: 100%;
+    width: 20%;
+    background: linear-gradient(90deg, #00a5f7 0%, #0052f6 100%);
+    box-shadow: 0 0 20px 2px #00a5f7;
+}
+
+#current_score {
+    float: left;
+    margin: 0% 2%;
+}
+
+#require_score {
+    float: right;
+    margin: 0% 2%;
+}
+
+#current_league {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    font-weight: bold;
+    font-size: 18px;
+    bottom: 5%;
+}
+
+#main_nav {
+    display: flex;
+    width: 80%;
+    height: 6vh;
+    margin: -5% 10%;
+    justify-content: center;
+}
+
+.main_nav_items {
+    display: flex;
+    width: 40%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(90deg, #0052f6 0%, #00a5f7 100%);
+    border-radius: 12px;
+}
+
+#town {
+    width: 90%;
+    height: 40vh; 
+    overflow: hidden; 
+    margin: 10% auto;
+    display: flex;
+    align-items: center; 
+    justify-content: center;
+    position: relative;
+}
+
+#town_menu {
+    position: absolute;
+    top: 50%; 
+    left: 50%; 
+    transform: translate(-50%, -50%);
+    z-index: 1; 
+    font-weight: bold;
+    background-color: #696969;
+    padding: 3% 10%;
+    border-radius: 8px; 
+    opacity: 0.8;
+}
+
+#town_img {
+    width: auto;
+    height: 100%;
+    object-fit: contain;
+    border-radius: 12px;
+    z-index: 0;
+}
+
+#earn_games {
+    overflow: auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    height: 80vh;
+    margin-top: 4vh;
+}
+
+.earn_games {
+    top: 15px;
+    background: #1c1c1c;
+    border: 2px solid #9fd8d8;
+    border-radius: 10px;
+    padding: 20px;
+    width: calc(55% - 40px);
+    height: 45%;
+    box-sizing: border-box;
+    box-shadow: 0 0 15px #9fd8d8;
+    text-align: center;
+    position: relative;
+}
+
+.earn_games_img {
+    width: 100%;
+    height: 40%;
+    border-radius: 12px;
+}
+
+.earn_games_title {
+    font-weight: bold;
+}
+
+.earn_games_describe {
+    font-size: 12px;
+    color: rgb(196, 180, 180);
+}
+
+#icon_boost {
+    float: right;
+    top: 10vh;
+    margin: -25% 5%;
+}
+
+#game_tap_boost {
+    font-weight: bold;
+}
+
+@keyframes tilt {
+    0% { transform: perspective(1000px) rotateX(0) rotateY(0); }
+    50% { transform: perspective(1000px) rotateX(var(--tilt-x)) rotateY(var(--tilt-y)); }
+    100% { transform: perspective(1000px) rotateX(0) rotateY(0); }
+}
+
+.tilt {
+    animation: tilt 0.3s ease-in-out;
+}
+
+#game_tap_coin {
+    width: 80%;
+    height: 40vh;
+    margin: 10% 10%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#back_coin {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background-color: #00a5f7;
+    opacity: 0.2;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    box-shadow: 0 0 40px 12px #00a5f7;
+
+}
+
+.coin {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background-color: #00a5f7;
+    background-size: cover;
+    background-position: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
+}
+
+.nav_panel {
+    background: linear-gradient(90deg, #00a5f7 0%, #0052f6 100%);
+    width: 95%;
+    margin: 0 auto;
+    height: 7vh;
+    position: absolute;
+    bottom: 1vh; 
+    left: 0;
+    right: 0;
+    display: flex;
+    border-radius: 18px;
+    box-shadow: 0 -1px 20px 4px #00a5f7;
+}
+
+.nav_items {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+    text-align: center;
+    position: relative;
+}
+
+.nav_items::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%); 
+    height: 70%;
+    width: 1px;
+    background-color: black; 
+}
+
+.nav_items:hover {
+    cursor: pointer;
+}
+.nav_items:last-child::after {
+    content: none;
+}
+
+.icons {
+    position: relative;
+    display: flex;
+    align-items: center; 
+}
+
+.icons::before {
+    content: "";
+    background-repeat: no-repeat;
+    background-size: contain;
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+#icon_profile {
+    padding-left: 20px;
+}
+#icon_profile::before {
+    background-image: url('../png/icons/user.png');
+    width: 20px;
+    height: 20px; 
+}
+
+#icon_settings {
+    padding-left: 20px;
+}
+#icon_settings::before {
+    background-image: url('../png/icons/settings.png');
+    width: 20px;
+    height: 20px; 
+}
+
+#icon_chroon_coin {
+    padding-left: 15px;
+}
+#icon_chroon_coin::before {
+    background-image: url('../png/icons/chroonCoin.png');
+    width: 30px;
+    height: 30px; 
+}
+
+#icon_boost {
+    padding-left: 30px;
+}
+#icon_boost::before {
+    background-image: url('../png/icons/boost.png');
+    width: 30px;
+    height: 30px; 
+}
+
