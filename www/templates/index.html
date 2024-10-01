@@ -5,32 +5,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chroon</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
 </head>
 <body>
     <div id="page_container">
         <div id="main_container" class="section">
-            <header>
+            <header id="main_header">
                 <div class="icons" id="icon_profile">
-                    <span id="user_name">Valentin</span>
+                    <span id="user_name">{{ user.name }}</span>
                 </div>
     
-                <div id="settings_but">
-                    <div class="icons" id="icon_settings">
-                        <span id="user_settings">Settings</span>
-                    </div>
+                <div class="icons" id="icon_settings">
+                    <span id="user_settings">Settings</span>
                 </div>
             </header>
             <main>
-                <div class="icons" id="icon_chroon_coin">
-                    <span id="user_balance">1 488 000</span>
+                <div class="icons" id="icon_coin">
+                    <span class="user_balance">{{ user.balance }}</span>
                 </div>
                 
                 <div id="top_block">
                     <div id="top_bar">
                         <div id="top_progress"></div>
                     </div>
-                    <span id="current_score">100</span>
-                    <span id="require_score">500</span><br>
+                    <span id="current_score">{{ user.town_population }}</span>
+                    <span id="require_score">0</span><br>
                     <span id="current_league">Hamlet</span>
                 </div>
     
@@ -40,7 +39,7 @@
     
                 <div id="town">
                     <div id="town_menu">Town</div>
-                    <img id="town_img" src="../static/png/towns/none.png" alt="Town">
+                    <img id="town_img" src="../static/png/towns/town.png" alt="Town">
                 </div>
             </main>
         </div>
@@ -48,14 +47,28 @@
         <div id="earn_container" class="section" style="display: none;">
             <div id="earn_games">
                 <div id="earn_tap" class="earn_games" data-target="game_tap">
-                    <img class="earn_games_img" src="../static/png/towns/city.png">
-                    <span class="earn_games_title">Tap</span><br><br>
-                    <span class="earn_games_describe">This game oakdapod apdkaopdkapkd aosdkapda dakspdokapodkaposdk okad</span>
+                    <div style="padding: 5px 20px 5px 20px;">
+                        <img class="earn_games_img" src="../static/png/icons/tapGame.png">
+                    </div>
+                    <div>
+                        <span class="earn_games_title">Tap</span><br><br>
+                        <span class="earn_games_describe">In this game you need to accumulate coins by clicking on the coin</span>
+                    </div>
+                </div>
+
+                <div id="earn_crash" class="earn_games" data-target="game_crash">
+                    <div style="padding: 5px 20px 5px 20px;">
+                        <img class="earn_games_img" src="../static/png/icons/crashGame.png">
+                    </div>
+                    <div>
+                        <span class="earn_games_title">Crash</span><br><br>
+                        <span class="earn_games_describe">The essence of the game is that you bet a certain amount, a rocket takes off, which brings you money, you need to collect it before the rocket crashes</span>
+                    </div>
                 </div>
             </div>
             <div id="game_tap" class="games" style="display: none;">
-                <div class="icons" id="icon_chroon_coin">
-                    <span id="user_balance">1 488 000</span>
+                <div class="icons" id="icon_coin">
+                    <span class="user_balance">{{ user.balance }}</span>
                 </div>
 
                 <div>
@@ -70,14 +83,74 @@
                     </div>
                 </div>
             </div>
+
+            <div id="game_crash" class="games" style="display: none;">
+                <div class="icons" id="icon_coin">
+                    <span class="user_balance">{{ user.balance }}</span>
+                </div>
+                
+                <div id="crash_display"></div>
+            </div>
         </div>
     
         <div id="referals_container" class="section" style="display: none;">
-            referals
+            <header>
+                <span style="font-size: 24px; font-weight: bold;">Invite friends</span><br>
+                <span style="font-size: 18px; font-weight: bold;">and earn more coins</span>
+            </header>
+            <div id="referals">
+                <div id="referals_info">
+                    <div style="width: 25%;">
+                        <img id="gift_img" src="../static/png/icons/gift.png">
+                    </div>
+                    <div style="width: 75%; display: flex; align-items: center; justify-content: center;">
+                        <span style="font-weight: bold;">For each friend you will receive</span>
+                        <div class="icons" id="icon_task_chroon_coin">
+                            <span>100000</span>
+                        </div>
+                    </div>
+                </div>
+                <div id="referal_link" onclick="copyText()">Copy the link</div>
+                <div id="referals_list">
+                    {% for referral in referals %}
+                        <div class="referal_user">
+                            <div class="icons" id="icon_referral">
+                                <span id="referral_name">{{ referral.name }}</span>
+                            </div>
+
+                            <div class="icons" id="icon_task_chroon_coin">
+                                <span style="float: right;">100000</span>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
         </div>
     
         <div id="tasks_container" class="section" style="display: none;">
-            tasks
+            <header>
+                <span style="font-size: 24px; font-weight: bold;">Complete the task</span><br>
+                <span style="font-size: 18px; font-weight: bold;">and earn more coins</span>
+            </header>
+            <div id="tasks">
+                <div class="tasks">
+                    <span class="task_text">Subscribe to the Telegram channel</span>
+                    <div class="task_pay">
+                        <div class="icons" id="icon_task_chroon_coin">
+                            <span>100000</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tasks">
+                    <span class="task_text">Subscribe to Instagram</span>
+                    <div class="task_pay">
+                        <div class="icons" id="icon_task_chroon_coin">
+                            <span>100000</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     
         <div class="nav_panel">
@@ -87,37 +160,12 @@
             <div class="nav_items" data-target="tasks_container">Tasks</div>
         </div>
     </div>
-
-    <script src="../static/js/pageRoute.js"></script>
     <script>
-        const coin = document.getElementById('game_tap_coin');
-        const coinElement = document.querySelector('.coin');
-    
-        coin.addEventListener('click', (event) => {
-            const rect = coin.getBoundingClientRect();
-            const coinCenterX = rect.left + rect.width / 2;
-            const coinCenterY = rect.top + rect.height / 2;
-    
-            const deltaX = event.clientX - coinCenterX;
-            const deltaY = event.clientY - coinCenterY;
-    
-            const tiltX = (deltaY / rect.height) * 60;
-            const tiltY = -(deltaX / rect.width) * 60;
-    
-            coinElement.style.setProperty('--tilt-x', `${tiltX}deg`);
-            coinElement.style.setProperty('--tilt-y', `${tiltY}deg`);
-    
-            // Удалите классы, чтобы перезапустить анимацию
-            coinElement.classList.remove('tilt');
-            
-            requestAnimationFrame(() => {
-                coinElement.classList.add('tilt');
-            });
-    
-            setTimeout(() => {
-                coinElement.classList.remove('tilt');
-            }, 300);
-        });
+        var userData = {name: '{{ user.name }}', tgID: '{{ user.tg_id }}', balance: '{{ user.balance }}', townName: '{{ user.town_name }}', townRank: '{{ user.town_rank }}', townPopulation: '{{ user.town_population }}'};
     </script>
+    <script src="../static/js/index.js"></script>
+    <script src="../static/js/pageRoute.js"></script>
+    <script src="../static/js/tap.js"></script>
+    <script src="../static/js/crash.js"></script>
 </body>
 </html>

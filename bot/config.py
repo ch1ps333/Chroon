@@ -10,13 +10,14 @@ siteDatebasePath = os.path.join(project_root, 'db', 'site.db')
 logRequests = os.path.join(project_root, 'www', 'log.txt')
 
 dateBaseConfig = {
-    'dbhost': 'PashaRiabyi.mysql.pythonanywhere-services.com',
-    'name': 'PashaRiabyi',
+    'dbhost': 'localhost',
+    'name': 'root',
     'dbport': 3306,
-    'dppass': 'Iftkn307',
-    'dbname': 'PashaRiabyi$site',
+    'dppass': '',
+    'dbname': 'chroon',
 }
 
+bot_id = 'labozahyshator_bot'
 
 class Settings():
     bot_token = os.getenv('BOT_TOKEN')

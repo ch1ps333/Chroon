@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const earnGames = document.querySelectorAll('.earn_games');
     const blockGames = document.getElementById('earn_games');
     const games = document.querySelectorAll('.games');
+    const townMenu = document.getElementById('town_menu');
 
     function showSection(targetId) {
         sections.forEach(section => {
@@ -36,5 +37,29 @@ document.addEventListener('DOMContentLoaded', function() {
             var targetId = this.getAttribute('data-target');
             runGame(targetId)
         })
+    })
+
+    townMenu.addEventListener('click', function openTown() {
+        fetch('/town', {
+            method: 'GET',
+            headers: {
+                'Authorization': 'Bearer ' + localStorage.getItem('token')
+            }
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok ' + response.statusText);
+            }
+            return response.text();
+        })
+        .then(html => {
+            document.open();
+            document.write(html);
+            document.close();
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+
     })
 })

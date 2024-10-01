@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chroon</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <link rel="stylesheet" href="../static/css/town.css">
+</head>
+<body>
+    <div id="create_town">
+        <header>
+            <div class="icons" id="icon_go_back">
+                <span id="town_go_back">Back</span>
+            </div>
+    
+            <span id="town_name">{{ user.town_name }}</span>
+        </header>
+        <div id="create_container">
+            <div class="box_head">
+                <span>Придумайте назву для свого міста (2-18 символи)<br><br></span>
+            </div>
+            <form method="POST" action="">
+                <input type="text" id="input_town_name" name="input_town_name" minlength="2" maxlength="18" required><br>
+            
+                <button type="button" id="button_create_town" disabled onclick="createTown()">Створити</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        var townData = {townName: '{{ user.town_name }}'};
+    </script>
+
+    <script src="../static/js/createTown.js"></script>
+    <script src="../static/js/townPageRoute.js"></script>
+</body>
+</html>

@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chroon</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <link rel="stylesheet" href="../static/css/town.css">
+</head>
+<body>
+    <div id="load_town">
+        <header>
+            <div id="town_go_back">
+                <div class="icons" id="icon_go_back">
+                    <span>Back</span>
+                </div>
+            </div>
+    
+            <div class="icons" id="icon_coin">
+                <span class="user_balance">{{ user.balance }}</span>
+            </div>
+        </header>
+
+        <div id="main_container" class="town_section">
+            <div id="nav_town">
+                <div id="nav_town_stats" class="nav_town_buttons" data-target="stats_container">
+                    <div id="nav_town_img_stats" class="nav_town_img"></div><br>
+                    <span class="nav_town_name">Statistics</span>
+                </div>
+                
+                <div id="nav_town_research" class="nav_town_buttons" data-target="research_container">
+                    <div id="nav_town_img_research" class="nav_town_img"></div><br>
+                    <span class="nav_town_name">Research</span>
+                </div>
+    
+                <div id="nav_town_houses" class="nav_town_buttons" data-target="houses_container">
+                    <div id="nav_town_img_houses" class="nav_town_img"></div><br>
+                    <span class="nav_town_name">Houses</span>
+                </div>
+    
+                <div id="nav_town_workplaces" class="nav_town_buttons" data-target="workplaces_container">
+                    <div id="nav_town_img_workplaces" class="nav_town_img"></div><br>
+                    <span class="nav_town_name">Workplaces</span>
+                </div>
+                
+                <div id="nav_town_entertainment" class="nav_town_buttons" data-target="entertainment_container">
+                    <div  id="nav_town_img_entertainment" class="nav_town_img"></div><br>
+                    <span class="nav_town_name">Entertainment</span>
+                </div>
+    
+                <div id="nav_town_other" class="nav_town_buttons" data-target="other_container">
+                    <div id="nav_town_img_other" class="nav_town_img"></div><br>
+                    <span class="nav_town_name">Other</span>
+                </div>
+            </div>
+        </div>
+
+        <div id="stats_container" class="town_section" style="display: none;">
+            <div id="town_stats_info">
+                <h1>{{ user.town_name }}</h1><br><br><br>
+
+                <span>Баланс міста:</span>
+                <div>
+                    <span id="town_balance">{{ user.town_balance }}</span>/<span>{{ user.town_balance_limit }}</span>
+                </div>
+                <div id="withdraw_town_balance">Зняти гроші</div><br>
+
+                <span>Кількість жителів:</span>
+                <div>
+                    <span>{{ user.town_population }}</span>/<span id="town_residential_places">{{ user.town_residential_places }}</span>
+                </div><br>
+
+                <span>Кількість робочих місць:</span>
+                <div>
+                    <span id="town_workplaces">{{ user.town_workplaces }}</span>
+                </div><br>
+
+                <span>Медицина:</span>
+                <div>
+                    <span>93%</span>
+                </div><br>
+
+                <span>Розваги:</span>
+                <div>
+                    <span>84%</span>
+                </div><br>
+
+                <span>Якість життя:</span>
+                <div>
+                    <span>88%</span>
+                </div>
+
+            </div>
+        </div>
+
+        <div id="research_container" class="town_section" style="display: none;">
+            research_container
+        </div>
+
+        <div id="houses_container" class="town_section" style="display: none;">
+            <div class="town_buy_container">
+                <div class="town_items" onclick="buyHouse(1, 'Купити Невеликий будинок за 1000', 'Купити');">
+                    <span class="town_item_name">Невеликий будинок ( 10 місць )</span>
+                    <div class="town_item_price">
+                        <div class="icons" id="icon_coin">
+                            <span>1000</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="town_items" onclick="buyHouse(2, 'Купити Будинок за 5000', 'Купити');">
+                    <span class="town_item_name">Будинок ( 50 місць )</span>
+                    <div class="town_item_price">
+                        <div class="icons" id="icon_coin">
+                            <span>5000</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="town_items" onclick="buyHouse(3, 'Купити Великий будинок за 10000', 'Купити');">
+                    <span class="town_item_name">Великий будинок ( 100 місць )</span>
+                    <div class="town_item_price">
+                        <div class="icons" id="icon_coin">
+                            <span>10000</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="town_items" onclick="buyHouse(4, 'Купити Багатоповерховий будинок за 100000', 'Купити');">
+                    <span class="town_item_name">Багатоповерховий будинок ( 1000 місць )</span>
+                    <div class="town_item_price">
+                        <div class="icons" id="icon_coin">
+                            <span>100000</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="town_items" onclick="buyHouse(5, 'Купити Хмарочос за 1000000', 'Купити');">
+                    <span class="town_item_name">Хмарочос ( 10000 місць )</span>
+                    <div class="town_item_price">
+                        <div class="icons" id="icon_coin">
+                            <span>1000000</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div id="workplaces_container" class="town_section" style="display: none;">
+            <div id="workplaces_buy_container">
+
+                <div class="town_items" onclick="buyWorkplace(1, 'Купити магазин за 5000', 'Купити');">
+                    <span class="town_item_name">Магазин (10 робочих місць)</span>
+                    <div class="town_item_price">
+                        <div class="icons" id="icon_coin">
+                            <span>5000</span>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+
+        <div id="entertainment_container" class="town_section" style="display: none;">
+            entertainment_container
+        </div>
+
+        <div id="other_container" class="town_section">
+            other_container
+        </div>
+    </div>
+
+    <script src="../static/js/town.js"></script>
+    <script src="../static/js/townPageRoute.js"></script>
+</body>
+</html>

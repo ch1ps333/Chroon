@@ -14,7 +14,7 @@ async def main():
     bot = Bot(cfg.bot_token)
     dp = Dispatcher()
 
-    dp.message.middleware(AntiFloodMiddleware(0.5))
+    dp.message.middleware(AntiFloodMiddleware(1.0))
 
     dp.include_routers (
         bot_commands.router,
